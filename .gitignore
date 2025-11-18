@@ -1,0 +1,17 @@
+#########################
+# Delphi Backup Files   #
+#########################
+*.~pas
+*.~pa
+*.~dfm
+*.~dcu
+*.bak
+*.*~
+*~
+*.old
+*.orig
+
+# IDE history
+__history/
+__recovery
+.history
