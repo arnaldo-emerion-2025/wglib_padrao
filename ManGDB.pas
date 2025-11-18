@@ -289,7 +289,7 @@ begin
     begin
 
       quBusca.Active := False;
-      quBusca.SQL.Text := ' select ' + Retorna + ' From  ' + Tabela + ' Where 1 = 1 and ' + _and;
+      quBusca.SQL.Text := ' select ' + Retorna + ' From ' + Tabela + ' Where 1 = 1 and ' + _and;
       quBusca.Active := True;
 
       if not quBusca.IsEmpty then
