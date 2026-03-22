@@ -110,7 +110,7 @@ type
 
   private
     {Private declarations}
-    strIPServNFe, strPortaServNFe: string; //variáveis para ServNFe
+    strIPServNFe, strPortaServNFe: string; //variï¿½veis para ServNFe
     CaminhoXml, CaminhoDanfe, CaminhoRetorno: string;
 
     procedure CarregaSOCKET;
@@ -137,30 +137,30 @@ var
   GFlgCod: string;
   GArquivo: string;
   GLibAce: string;
-  GDataLimite: TDateTime; {Data Limite para Utilização do Software}
+  GDataLimite: TDateTime; {Data Limite para Utilizaï¿½ï¿½o do Software}
   GParLib: string;
-  GFprm: string; {Permissão do usuário ativo na transação selecionada}
+  GFprm: string; {Permissï¿½o do usuï¿½rio ativo na transaï¿½ï¿½o selecionada}
   GExiFor: string;
   GExiCli: string;
   GExiCom: string;
   GDlog: TDateTime; {Data / hora de login}
-  GModu: TModulos; {Módulos habilitados para uso}
-  GUsu_Id: integer; {Usuário ativo}
+  GModu: TModulos; {Mï¿½dulos habilitados para uso}
+  GUsu_Id: integer; {Usuï¿½rio ativo}
   GsCodCli: integer;
   GUsu_Sn: string; {Senha do Usuario ativo}
   GGus_Id: integer; {Grupo de Usuario ativo}
   GCodCli: integer;
   GSup_Id: integer;
-  GCodUsu: string; {Usuário ativo}
+  GCodUsu: string; {Usuï¿½rio ativo}
   GFonUsu: string;
   GFaxUsu: string;
   GFlgGer: string;
   GParamStr: string;
   GuIdHal: string;
   GEmp_Id: integer; {Empresa ativa}
-  GUsu_Nm: string; {login do Usuário Ativo}
+  GUsu_Nm: string; {login do Usuï¿½rio Ativo}
   GUsu_Ema: string; {Email do Usuario}
-  GTemp: string[40]; {Diretório para gravação de arquivos temporários}
+  GTemp: string[40]; {Diretï¿½rio para gravaï¿½ï¿½o de arquivos temporï¿½rios}
   GCtr_bai, Tecla: string; {Controle da baixa}
   GCgcEmp, GInsEmp, GApeEmp, GRazEmp, GEndEmp, GCidEmp, GUfeEmp, GRefEmp, GFonEmp, GFaxEmp, GCepEmp, GWebEmp, GEmaEmp: string;
   GId_FinUfe: integer;
@@ -168,12 +168,12 @@ var
   GnNavig: Integer; {Quantidade navigator}
   GTmpLog: Integer; {Tempo limite para inatividade do Sistema}
   GTmpVer: Integer; {Tempo limite para inatividade do Sistema}
-  GExiNot: string; {Se o Usuario esta ou nao habilitado a Receber Mensagens de Notificações em Projeto}
+  GExiNot: string; {Se o Usuario esta ou nao habilitado a Receber Mensagens de Notificaï¿½ï¿½es em Projeto}
   GDSNavig: string; {Primeiro navigator - Data source correspondente}
-  GVerUsuario: integer; {Verificar se o formulario de Autenticação de Usuario ja esta aberto}
-  GCodVen_Id: integer; {Se Usuário Logado Possui Código de Vendedor Ativo}
-  GCodRep_Id: integer; {Se Usuário Logado Possui Código de Preposto Ativo}
-  GCodAtd_Id: integer; {Se Usuário Logado Possui Código de Atendente Ativo}
+  GVerUsuario: integer; {Verificar se o formulario de Autenticaï¿½ï¿½o de Usuario ja esta aberto}
+  GCodVen_Id: integer; {Se Usuï¿½rio Logado Possui Cï¿½digo de Vendedor Ativo}
+  GCodRep_Id: integer; {Se Usuï¿½rio Logado Possui Cï¿½digo de Preposto Ativo}
+  GCodAtd_Id: integer; {Se Usuï¿½rio Logado Possui Cï¿½digo de Atendente Ativo}
   GNomVen_Id: string; {Nome do Vendedor Ativo}
   GNomRep_Id: string; {Nome do Preposto Ativo}
   GCodClp_Id: string; {Tipo de Linha de Produto que poder trabalhar o Vendedor}
@@ -188,7 +188,7 @@ var
 
   Nome_ArqReq1, Nome_ArqReq2, Nome_ArqRes1, Nome_ArqRes2: string;
 
-  Gcx_Emp, Gcx_Cai, Gcx_Ope, Gcx_Sup: integer; {Informações de Usuários Operadores de Caixas}
+  Gcx_Emp, Gcx_Cai, Gcx_Ope, Gcx_Sup: integer; {Informaï¿½ï¿½es de Usuï¿½rios Operadores de Caixas}
 
   GError: string;
   sConectar: string;
@@ -206,7 +206,7 @@ var
 
   GCodEmpCodUsuServ: string;
 
-  roleName, fireBird: string; {nome da role Atribuida e versão correntdo Firebird}
+  roleName, fireBird: string; {nome da role Atribuida e versï¿½o correntdo Firebird}
 
 const
 
@@ -214,10 +214,10 @@ const
   GAnimar = 'c:\Emerion\animar.gif';
   GLogar = 'c:\Emerion\login.bmp';
   GImprimir = 'c:\Emerion\print.bmp';
-  GDatabaseName = 'ISade'; {Database de conexão}
-  GMensagem = 'Atenção. Ocorreu um problema em relação ao licenciamento do sistema. Por favor entre em contato com o suporte tecnico.';
-  GMensagem_0001 = 'Atenção. Ocorreu um problema em relação ao licenciamento do sistema. Por favor entre em contato com o suporte tecnico.';
-  GMensagem_0002 = 'Usuario não possui acesso a opcão.';
+  GDatabaseName = 'ISade'; {Database de conexï¿½o}
+  GMensagem = 'Atenï¿½ï¿½o. Ocorreu um problema em relaï¿½ï¿½o ao licenciamento do sistema. Por favor entre em contato com o suporte tecnico.';
+  GMensagem_0001 = 'Atenï¿½ï¿½o. Ocorreu um problema em relaï¿½ï¿½o ao licenciamento do sistema. Por favor entre em contato com o suporte tecnico.';
+  GMensagem_0002 = 'Usuario nï¿½o possui acesso a opcï¿½o.';
   _BR = #13#10;
 
 implementation
@@ -242,7 +242,7 @@ begin
   temp.First;
   if temp.RecordCount > 0 then
   begin
-    mensagem := 'Nota já utilizada em ';
+    mensagem := 'Nota jï¿½ utilizada em ';
     case temp.FieldByName('TAB').AsInteger of
       1:
         begin
@@ -430,7 +430,7 @@ var
 begin
   CarregaSOCKET;
 
-  if (UpperCase(ExtractFileName(application.exename)) = 'EFATURA.EXE')
+  if (UpperCase(ExtractFileName(application.exename)) = 'EFATURA.EXE..')
     or (UpperCase(ExtractFileName(application.exename)) = 'EFRENTELOJA.EXE') then
   begin
     CarregaIni;
@@ -517,7 +517,7 @@ begin
 
     end
     else
-      ShowMessage('Diretorio Privado não Pode ser Criado ' + ExtractFilePath(ParamStr(0)) + 'PRIV');
+      ShowMessage('Diretorio Privado nï¿½o Pode ser Criado ' + ExtractFilePath(ParamStr(0)) + 'PRIV');
 
   end;
 
@@ -697,7 +697,7 @@ begin
   SQLTemp := TwwQuery.Create(Self);
 
   try
-    //Informações da empresa Origem
+    //Informaï¿½ï¿½es da empresa Origem
     SQLTemp.Active := False;
     SQLTemp.DatabaseName := OriDB.DatabaseName;
     SQLTemp.sql.Text := 'select geremp.sigufe from geremp where codemp = 1';
@@ -710,7 +710,7 @@ begin
     SQLTemp.Active := True;
     strAtuOri := SQLTemp.FieldByName('ATU_REGRAS_DBS').AsString;
 
-    //Informações da empresa Destino
+    //Informaï¿½ï¿½es da empresa Destino
     SQLTemp.Active := False;
     SQLTemp.DatabaseName := DestDB.DatabaseName;
     SQLTemp.sql.Text := 'select geremp.sigufe from geremp where codemp = 1';
@@ -723,7 +723,7 @@ begin
     SQLTemp.Active := True;
     strAtuDes := SQLTemp.FieldByName('ATU_REGRAS_DBS').AsString;
 
-    //Quando UFs diferentes verifica se destinatário aceita atualização
+    //Quando UFs diferentes verifica se destinatï¿½rio aceita atualizaï¿½ï¿½o
     if strUFOri <> strUFDes then
       if strAtuDes <> 'Sim' then
         Result := False;
@@ -764,7 +764,7 @@ begin
       if not SQLProduto.FieldByName('CODUNE').isNull then
         ReplicaUnidade(SQLProduto.FieldByname('CODUNE').AsString);
 
-      //Verificando Unidade de Saída
+      //Verificando Unidade de Saï¿½da
       if not SQLProduto.FieldByName('CODUNS').isNull then
         ReplicaUnidade(SQLProduto.FieldByname('CODUNS').AsString);
 
@@ -803,13 +803,13 @@ begin
       SQLTEMP.Active := True;
       ReplicaIPI(SQLProduto.FieldByName('IPISAI').AsString, QuotedStr('Entrada'), SQLTemp.FieldByName('CODTXF').AsString);
 
-      //Verificando ipi de saída
+      //Verificando ipi de saï¿½da
 
       SQLTEMP.Active := False;
       SQLTemp.SQL.Text := 'Select ipis.codtxf as CODTXF ' +
         'from ' +
         'estpro pro ' +
-        'left join estipi ipis on ipis.codipi = pro.ipisai and upper(ipis.tipipi) = ' + QuotedStr('SAÍDA') +
+        'left join estipi ipis on ipis.codipi = pro.ipisai and upper(ipis.tipipi) = ' + QuotedStr('SAï¿½DA') +
         ' where ' +
         ' pro.codclp = ' + QuotedStr(SQLProduto.FieldByName('CODCLP').AsString) +
         ' and pro.codgru = ' + QuotedStr(SQLProduto.FieldByName('CODGRU').AsString) +
@@ -820,10 +820,10 @@ begin
 
       ReplicaIPI(SQLProduto.FieldByName('IPISAI').AsString, QuotedStr('Saida'), SQLTemp.FieldByName('CODTXF').AsString);
 
-      //VERIFICANDO A SUBSTITUIÇÃO TRIBUTÁRIA DE ENTRADA
+      //VERIFICANDO A SUBSTITUIï¿½ï¿½O TRIBUTï¿½RIA DE ENTRADA
       ReplicSTR(SQLProduto.FieldByName('CODSTE').AsString, 'Entrada');
 
-      //VERIFICANDO A SUBSTITUIÇÃO TRIBUTÁRIA DE SAída
+      //VERIFICANDO A SUBSTITUIï¿½ï¿½O TRIBUTï¿½RIA DE SAï¿½da
       ReplicSTR(SQLProduto.FieldByName('CODSTs').AsString, 'Saida');
 
       //Atualizando Produtos
@@ -883,7 +883,7 @@ begin
         if DebugHook > 0 then
           fMsg(E.Message, 'I')
         else
-          fMsg('Produto Não Replicado', 'I');
+          fMsg('Produto Nï¿½o Replicado', 'I');
 
         DBEmerion1.Rollback;
       end;
@@ -1557,7 +1557,7 @@ begin
       DBEmerion1.Commit;
     except
       DBEmerion1.Rollback;
-      Fmsg('Regras não replicadas', 'I');
+      Fmsg('Regras nï¿½o replicadas', 'I');
     end;
   finally
     FreeAndNil(SQLProduto);
@@ -1575,7 +1575,7 @@ end;
 
 procedure TfmManGDB.CarregaCboICMS(SN: Boolean; Libera: string = 'B');
 begin
-  //Libera : 'L' Permite todas as Situações cadastradas 'B' diferencia entre Regime normal e Simples Nacional
+  //Libera : 'L' Permite todas as Situaï¿½ï¿½es cadastradas 'B' diferencia entre Regime normal e Simples Nacional
 
   //ST ICMS
   SQLST2.Active := false;
@@ -1815,7 +1815,7 @@ begin
   else
   begin
     if DebugHook = 0 then
-      messagebox(0, pchar('Não foi encontrado arquivo CONFIG.INI. Favor verifique e tente novamente.'), 'Emerion', mb_ok + MB_ICONINFORMATION);
+      messagebox(0, pchar('Nï¿½o foi encontrado arquivo CONFIG.INI. Favor verifique e tente novamente.'), 'Emerion', mb_ok + MB_ICONINFORMATION);
 
   end;
 
@@ -1961,18 +1961,18 @@ begin
   with TwwQuery(tQuery) do
   begin
 
-    fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+    fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
 
     try
       begin
-        ApplyUpdates; {Tenta aplicar as alterações}
-        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+        ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
+        fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
 
         result := True;
       end;
     except
       begin
-        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+        fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
 
         if TwwQuery(tQuery).State <> dsBrowse then
           TwwQuery(tQuery).CancelUpdates;
@@ -1995,18 +1995,18 @@ begin
   with TwwQuery(tQuery) do
   begin
 
-    fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+    fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
 
     try
       begin
-        ApplyUpdates; {Tenta aplicar as alterações}
-        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+        ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
+        fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
 
         result := True;
       end;
     except
       begin
-        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+        fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
 
         if TwwQuery(tQuery).State <> dsBrowse then
           TwwQuery(tQuery).CancelUpdates;
