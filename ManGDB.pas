@@ -438,22 +438,7 @@ begin
 
   GNFeEnvia := '';
 
-  GuIdHal := 'ibsade20'; //MasterGuIdHal;
   GuIdHal := MasterGuIdHal;
-
-    for aux := 0 to ParamCount -1 do
-     begin
-      if (ParamStr(aux) = 'senhaNova') then
-         GuIdHal := 'FgB@8165';
-     end;
-
-     if ((DebugHook > 0) and (ParamStr(1) <> 'remoto')) then //remoto
-        GuIdHal := 'FgB@8165'
-      else
-        GuIdHal := 'ibsade20';
-
-      if (ParamStr(1) = 'senhaNova') then
-        GuIdHal := 'FgB@8165';
 
   if 1 = 2 then
   begin
@@ -573,13 +558,7 @@ begin
   if dbMain.Connected then
     dbMain.Close;
 
-
-  dbMain.Params.Values['PASSWORD'] := 'ibsade20';
-  for aux := 0 to 1 do
-     begin
-      if (UpperCase(ParamStr(aux)) = Uppercase('senhaNova')) then
-           dbMain.Params.Values['PASSWORD'] := 'FgB@8165'
-     end;
+  dbMain.Params.Values['PASSWORD'] := MasterGuIdHal;
 
   if Trim(sConectar) = '' then
   begin
@@ -658,7 +637,6 @@ begin
           dbMain.Params.Add('SERVER NAME=' + GDirAce);
 
         dbMain.Params.Add('USER NAME=SYSDBA');
-        //dbMain.Params.Add('PASSWORD=' + 'ibsade20');
 
         if (Trim(roleName) <> '') then
           dbMain.Params.Add('ROLE NAME=' + roleName);
@@ -676,14 +654,7 @@ begin
     begin
       if dbMain.Connected then
         dbMain.Close;
-
-      if ((DebugHook > 0) and (ParamStr(1) <> 'remoto')) then //remoto
-        dbMain.Params.Values['PASSWORD'] := 'FgB@8165'
-      else
-        dbMain.Params.Values['PASSWORD'] := 'ibsade20';
-
-      if (ParamStr(1) = 'senhaNova') then
-        dbMain.Params.Values['PASSWORD'] := 'FgB@8165';
+        dbMain.Params.Values['PASSWORD'] := MasterGuIdHal;
     end;
   end
 end;
@@ -2037,13 +2008,7 @@ begin
   if dbMain.Connected then
     dbMain.Close;
 
-  if ((DebugHook > 0) and (ParamStr(1) <> 'remoto')) then //remoto
-    dbMain.Params.Values['PASSWORD'] := 'FgB@8165'
-  else
-    dbMain.Params.Values['PASSWORD'] := 'ibsade20';
-
-  if (ParamStr(1) = 'senhaNova') then
-    dbMain.Params.Values['PASSWORD'] := 'FgB@8165';
+  dbMain.Params.Values['PASSWORD'] := MasterGuIdHal;
 
   if Trim(sConectar) = '' then
   begin
