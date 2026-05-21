@@ -66,7 +66,6 @@ type
     REPLIC_ESTEMB: TStoredProc;
     MainMenu1: TMainMenu;
 
-
     procedure OnModuleCreate(Sender: TObject);
     procedure dbMainBeforeConnect(Sender: TObject);
     procedure DadosEmpresa(id: integer);
@@ -76,22 +75,7 @@ type
     function MasterGuIdHal: string;
     function AtuIPI_ICMS_ST(OriDB, DestDB: TDatabase): Boolean;
     function ImpressoraPadraoMatricial: Boolean;
-    procedure ReplicaProduto(CodClp, CodGru, CodSub, CodPro: string);
-    procedure ReplicaEstBar(CodClp, CodGru, CodSub, CodPro: string);
-    procedure ReplicaEstEmb(CodEmb: string);
-    procedure ReplicaCategoria(codCat: integer);
-    procedure ReplicSTR(CodStr, TipStr: string);
-    procedure ReplicaUFE(SigUfe, CodStr, TipStr: string);
-    procedure ReplicaTipoEmbalagem(CodEmb: string);
-    procedure ReplicaGerUfe(SigUfe: string);
-    procedure ReplicaIPI(CodIpi, TipIpi, CodTxf: string);
-    procedure ReplicaICM(CodIcm, TipIcm: string);
-    procedure ReplicaEstIte(CodEmp, CodClp, CodGru, CodSub, CodPro: string);
-    procedure ReplicaUnidade(CodUnd: string);
-    procedure ReplicaMarcas(CodMrc: Integer);
-    procedure ReplicaGrupo(CodGru: string);
-    procedure ReplicaSubGrupo(CodGru, CodSub: string);
-    procedure ReplicaTipoItem(CodTip: Integer);
+    
     procedure AtualizaRegras(CodClp, Codgru, CodSub, CodPro: string);
 
     procedure CarregaCboICMS(SN: Boolean; Libera: string = 'B');
@@ -110,7 +94,7 @@ type
 
   private
     {Private declarations}
-    strIPServNFe, strPortaServNFe: string; //variáveis para ServNFe
+    strIPServNFe, strPortaServNFe: string; //variï¿½veis para ServNFe
     CaminhoXml, CaminhoDanfe, CaminhoRetorno: string;
 
     procedure CarregaSOCKET;
@@ -122,7 +106,6 @@ type
     VGrupoUsu: Integer;
     function NotaExiste(nronfs: string): Boolean;
     procedure carregaLoginTxt();
-    function getServerName: string;
   end;
 
 var
@@ -137,30 +120,30 @@ var
   GFlgCod: string;
   GArquivo: string;
   GLibAce: string;
-  GDataLimite: TDateTime; {Data Limite para Utilização do Software}
+  GDataLimite: TDateTime; {Data Limite para Utilizaï¿½ï¿½o do Software}
   GParLib: string;
-  GFprm: string; {Permissão do usuário ativo na transação selecionada}
+  GFprm: string; {Permissï¿½o do usuï¿½rio ativo na transaï¿½ï¿½o selecionada}
   GExiFor: string;
   GExiCli: string;
   GExiCom: string;
   GDlog: TDateTime; {Data / hora de login}
-  GModu: TModulos; {Módulos habilitados para uso}
-  GUsu_Id: integer; {Usuário ativo}
+  GModu: TModulos; {Mï¿½dulos habilitados para uso}
+  GUsu_Id: integer; {Usuï¿½rio ativo}
   GsCodCli: integer;
   GUsu_Sn: string; {Senha do Usuario ativo}
   GGus_Id: integer; {Grupo de Usuario ativo}
   GCodCli: integer;
   GSup_Id: integer;
-  GCodUsu: string; {Usuário ativo}
+  GCodUsu: string; {Usuï¿½rio ativo}
   GFonUsu: string;
   GFaxUsu: string;
   GFlgGer: string;
   GParamStr: string;
   GuIdHal: string;
   GEmp_Id: integer; {Empresa ativa}
-  GUsu_Nm: string; {login do Usuário Ativo}
+  GUsu_Nm: string; {login do Usuï¿½rio Ativo}
   GUsu_Ema: string; {Email do Usuario}
-  GTemp: string[40]; {Diretório para gravação de arquivos temporários}
+  GTemp: string[40]; {Diretï¿½rio para gravaï¿½ï¿½o de arquivos temporï¿½rios}
   GCtr_bai, Tecla: string; {Controle da baixa}
   GCgcEmp, GInsEmp, GApeEmp, GRazEmp, GEndEmp, GCidEmp, GUfeEmp, GRefEmp, GFonEmp, GFaxEmp, GCepEmp, GWebEmp, GEmaEmp: string;
   GId_FinUfe: integer;
@@ -168,12 +151,12 @@ var
   GnNavig: Integer; {Quantidade navigator}
   GTmpLog: Integer; {Tempo limite para inatividade do Sistema}
   GTmpVer: Integer; {Tempo limite para inatividade do Sistema}
-  GExiNot: string; {Se o Usuario esta ou nao habilitado a Receber Mensagens de Notificações em Projeto}
+  GExiNot: string; {Se o Usuario esta ou nao habilitado a Receber Mensagens de Notificaï¿½ï¿½es em Projeto}
   GDSNavig: string; {Primeiro navigator - Data source correspondente}
-  GVerUsuario: integer; {Verificar se o formulario de Autenticação de Usuario ja esta aberto}
-  GCodVen_Id: integer; {Se Usuário Logado Possui Código de Vendedor Ativo}
-  GCodRep_Id: integer; {Se Usuário Logado Possui Código de Preposto Ativo}
-  GCodAtd_Id: integer; {Se Usuário Logado Possui Código de Atendente Ativo}
+  GVerUsuario: integer; {Verificar se o formulario de Autenticaï¿½ï¿½o de Usuario ja esta aberto}
+  GCodVen_Id: integer; {Se Usuï¿½rio Logado Possui Cï¿½digo de Vendedor Ativo}
+  GCodRep_Id: integer; {Se Usuï¿½rio Logado Possui Cï¿½digo de Preposto Ativo}
+  GCodAtd_Id: integer; {Se Usuï¿½rio Logado Possui Cï¿½digo de Atendente Ativo}
   GNomVen_Id: string; {Nome do Vendedor Ativo}
   GNomRep_Id: string; {Nome do Preposto Ativo}
   GCodClp_Id: string; {Tipo de Linha de Produto que poder trabalhar o Vendedor}
@@ -188,7 +171,7 @@ var
 
   Nome_ArqReq1, Nome_ArqReq2, Nome_ArqRes1, Nome_ArqRes2: string;
 
-  Gcx_Emp, Gcx_Cai, Gcx_Ope, Gcx_Sup: integer; {Informações de Usuários Operadores de Caixas}
+  Gcx_Emp, Gcx_Cai, Gcx_Ope, Gcx_Sup: integer; {Informaï¿½ï¿½es de Usuï¿½rios Operadores de Caixas}
 
   GError: string;
   sConectar: string;
@@ -206,7 +189,7 @@ var
 
   GCodEmpCodUsuServ: string;
 
-  roleName, fireBird: string; {nome da role Atribuida e versão correntdo Firebird}
+  roleName, fireBird: string; {nome da role Atribuida e versï¿½o correntdo Firebird}
 
 const
 
@@ -214,10 +197,10 @@ const
   GAnimar = 'c:\Emerion\animar.gif';
   GLogar = 'c:\Emerion\login.bmp';
   GImprimir = 'c:\Emerion\print.bmp';
-  GDatabaseName = 'ISade'; {Database de conexão}
-  GMensagem = 'Atenção. Ocorreu um problema em relação ao licenciamento do sistema. Por favor entre em contato com o suporte tecnico.';
-  GMensagem_0001 = 'Atenção. Ocorreu um problema em relação ao licenciamento do sistema. Por favor entre em contato com o suporte tecnico.';
-  GMensagem_0002 = 'Usuario não possui acesso a opcão.';
+  GDatabaseName = 'ISade'; {Database de conexï¿½o}
+  GMensagem = 'Atenï¿½ï¿½o. Ocorreu um problema em relaï¿½ï¿½o ao licenciamento do sistema. Por favor entre em contato com o suporte tecnico.';
+  GMensagem_0001 = 'Atenï¿½ï¿½o. Ocorreu um problema em relaï¿½ï¿½o ao licenciamento do sistema. Por favor entre em contato com o suporte tecnico.';
+  GMensagem_0002 = 'Usuario nï¿½o possui acesso a opcï¿½o.';
   _BR = #13#10;
 
 implementation
@@ -242,7 +225,7 @@ begin
   temp.First;
   if temp.RecordCount > 0 then
   begin
-    mensagem := 'Nota já utilizada em ';
+    mensagem := 'Nota jï¿½ utilizada em ';
     case temp.FieldByName('TAB').AsInteger of
       1:
         begin
@@ -430,7 +413,7 @@ var
 begin
   CarregaSOCKET;
 
-  if (UpperCase(ExtractFileName(application.exename)) = 'EFATURA.EXE')
+  if (UpperCase(ExtractFileName(application.exename)) = 'EFATURA.EXE..')
     or (UpperCase(ExtractFileName(application.exename)) = 'EFRENTELOJA.EXE') then
   begin
     CarregaIni;
@@ -438,22 +421,7 @@ begin
 
   GNFeEnvia := '';
 
-  GuIdHal := 'ibsade20'; //MasterGuIdHal;
   GuIdHal := MasterGuIdHal;
-
-    for aux := 0 to ParamCount -1 do
-     begin
-      if (ParamStr(aux) = 'senhaNova') then
-         GuIdHal := 'FgB@8165';
-     end;
-
-     if ((DebugHook > 0) and (ParamStr(1) <> 'remoto')) then //remoto
-        GuIdHal := 'FgB@8165'
-      else
-        GuIdHal := 'ibsade20';
-
-      if (ParamStr(1) = 'senhaNova') then
-        GuIdHal := 'FgB@8165';
 
   if 1 = 2 then
   begin
@@ -517,7 +485,7 @@ begin
 
     end
     else
-      ShowMessage('Diretorio Privado não Pode ser Criado ' + ExtractFilePath(ParamStr(0)) + 'PRIV');
+      ShowMessage('Diretorio Privado nï¿½o Pode ser Criado ' + ExtractFilePath(ParamStr(0)) + 'PRIV');
 
   end;
 
@@ -573,13 +541,8 @@ begin
   if dbMain.Connected then
     dbMain.Close;
 
-
-  dbMain.Params.Values['PASSWORD'] := 'ibsade20';
-  for aux := 0 to 1 do
-     begin
-      if (UpperCase(ParamStr(aux)) = Uppercase('senhaNova')) then
-           dbMain.Params.Values['PASSWORD'] := 'FgB@8165'
-     end;
+  dbMain.Params.Values['PASSWORD'] := MasterGuIdHal;
+  dbMain.Params.Add('SQLDIALECT=3');
 
   if Trim(sConectar) = '' then
   begin
@@ -652,13 +615,13 @@ begin
 
         dbMain.Params.Clear;
 
+        dbMain.Params.Add('SQLDIALECT=3');
         dbMain.Params.Add('BLOBS TO CACHE=-1');
 
         if Trim(GDirAce) <> '' then
           dbMain.Params.Add('SERVER NAME=' + GDirAce);
 
         dbMain.Params.Add('USER NAME=SYSDBA');
-        //dbMain.Params.Add('PASSWORD=' + 'ibsade20');
 
         if (Trim(roleName) <> '') then
           dbMain.Params.Add('ROLE NAME=' + roleName);
@@ -676,14 +639,7 @@ begin
     begin
       if dbMain.Connected then
         dbMain.Close;
-
-      if ((DebugHook > 0) and (ParamStr(1) <> 'remoto')) then //remoto
-        dbMain.Params.Values['PASSWORD'] := 'FgB@8165'
-      else
-        dbMain.Params.Values['PASSWORD'] := 'ibsade20';
-
-      if (ParamStr(1) = 'senhaNova') then
-        dbMain.Params.Values['PASSWORD'] := 'FgB@8165';
+        dbMain.Params.Values['PASSWORD'] := MasterGuIdHal;
     end;
   end
 end;
@@ -697,7 +653,7 @@ begin
   SQLTemp := TwwQuery.Create(Self);
 
   try
-    //Informações da empresa Origem
+    //Informaï¿½ï¿½es da empresa Origem
     SQLTemp.Active := False;
     SQLTemp.DatabaseName := OriDB.DatabaseName;
     SQLTemp.sql.Text := 'select geremp.sigufe from geremp where codemp = 1';
@@ -710,7 +666,7 @@ begin
     SQLTemp.Active := True;
     strAtuOri := SQLTemp.FieldByName('ATU_REGRAS_DBS').AsString;
 
-    //Informações da empresa Destino
+    //Informaï¿½ï¿½es da empresa Destino
     SQLTemp.Active := False;
     SQLTemp.DatabaseName := DestDB.DatabaseName;
     SQLTemp.sql.Text := 'select geremp.sigufe from geremp where codemp = 1';
@@ -723,7 +679,7 @@ begin
     SQLTemp.Active := True;
     strAtuDes := SQLTemp.FieldByName('ATU_REGRAS_DBS').AsString;
 
-    //Quando UFs diferentes verifica se destinatário aceita atualização
+    //Quando UFs diferentes verifica se destinatï¿½rio aceita atualizaï¿½ï¿½o
     if strUFOri <> strUFDes then
       if strAtuDes <> 'Sim' then
         Result := False;
@@ -737,788 +693,6 @@ end;
 function TfmManGDB.ImpressoraPadraoMatricial: Boolean;
 begin
   Result := True;
-end;
-
-procedure TfmManGDB.ReplicaProduto(CodClp, CodGru, CodSub, CodPro: string);
-var
-  SQLProduto: TwwQuery; //Dados dos Produtos
-  SQLTemp: TwwQuery;
-begin
-  try
-    try
-      DBEmerion1.StartTransaction;
-      SQLProduto := TwwQuery.Create(Self);
-      SQLTemp := TwwQuery.Create(Self);
-      SQLProduto.DatabaseName := 'isade';
-      SQLTemp.DataBaseName := 'isade';
-      SQLProduto.sql.Text := 'select * from estpro where codclp = ' + QuotedStr(codclp) + ' and codgru = ' + QuotedStr(codgru)
-        + ' and codsub = ' + QuotedStr(codsub) + ' and codpro = ' + QuotedStr(codpro) + ' -- ';
-      SQLProduto.active := true;
-
-      //Verificando os Dados de Todas as Tabelas Auxiliares
-      //Verificando a Categoria
-      if not SQLProduto.FieldByName('CODCAT').isNull then
-        ReplicaCategoria(SQLProduto.FieldByName('CODCAT').AsInteger);
-
-      //Verificando Unidade de Entrada
-      if not SQLProduto.FieldByName('CODUNE').isNull then
-        ReplicaUnidade(SQLProduto.FieldByname('CODUNE').AsString);
-
-      //Verificando Unidade de Saída
-      if not SQLProduto.FieldByName('CODUNS').isNull then
-        ReplicaUnidade(SQLProduto.FieldByname('CODUNS').AsString);
-
-      //Verificando Marca
-      if not SQLProduto.FieldByName('CODMRC').isNull then
-        ReplicaMarcas(SQLProduto.FieldByname('CODMRC').Value);
-
-      //Verificando Tipo de Item
-      if not SQLProduto.FieldByName('CODTIP').isNull then
-        ReplicaTipoItem(SQLProduto.FieldByname('Codtip').Value);
-
-      //Verificando Grupo
-      ReplicaGrupo(CodGru);
-
-      //Verificando SubGrupo
-      ReplicaSubGrupo(Codgru, CodSub);
-
-      //verificando icms de saida
-      ReplicaICM(SQLProduto.FieldByName('ICMSAI').AsString, 'Saida');
-
-      //verificando icms de entrada
-      ReplicaICM(SQLProduto.FieldByName('ICMENT').AsString, 'Entrada');
-
-      //verificando ipi de entrada
-      SQLTEMP.Active := False;
-      SQLTemp.SQL.Text := 'Select ipie.codtxf as CODTXF ' +
-        'from ' +
-        'estpro pro ' +
-        'left join estipi ipie on ipie.codipi = pro.ipient and upper(ipie.tipipi) = ' + QuotedStr('ENTRADA') +
-        ' where ' +
-        'pro.codclp = ' + QuotedStr(SQLProduto.FieldByName('CODCLP').AsString) +
-        ' and pro.codgru = ' + QuotedStr(SQLProduto.FieldByName('CODGRU').AsString) +
-        ' and pro.codsub = ' + QuotedStr(SQLProduto.FieldByName('CODSUB').AsString) +
-        ' and pro.codpro = ' + QuotedStr(SQLProduto.FieldByName('CODPRO').AsString) +
-        ' and pro.ipient = ' + QuotedStr(SQLProduto.FieldByName('IPIENT').AsString);
-      SQLTEMP.Active := True;
-      ReplicaIPI(SQLProduto.FieldByName('IPISAI').AsString, QuotedStr('Entrada'), SQLTemp.FieldByName('CODTXF').AsString);
-
-      //Verificando ipi de saída
-
-      SQLTEMP.Active := False;
-      SQLTemp.SQL.Text := 'Select ipis.codtxf as CODTXF ' +
-        'from ' +
-        'estpro pro ' +
-        'left join estipi ipis on ipis.codipi = pro.ipisai and upper(ipis.tipipi) = ' + QuotedStr('SAÍDA') +
-        ' where ' +
-        ' pro.codclp = ' + QuotedStr(SQLProduto.FieldByName('CODCLP').AsString) +
-        ' and pro.codgru = ' + QuotedStr(SQLProduto.FieldByName('CODGRU').AsString) +
-        ' and pro.codsub = ' + QuotedStr(SQLProduto.FieldByName('CODSUB').AsString) +
-        ' and pro.codpro = ' + QuotedStr(SQLProduto.FieldByName('CODPRO').AsString) +
-        ' and pro.ipisai = ' + QuotedStr(SQLProduto.FieldByName('IPISAI').AsString);
-      SQLTEMP.Active := True;
-
-      ReplicaIPI(SQLProduto.FieldByName('IPISAI').AsString, QuotedStr('Saida'), SQLTemp.FieldByName('CODTXF').AsString);
-
-      //VERIFICANDO A SUBSTITUIÇÃO TRIBUTÁRIA DE ENTRADA
-      ReplicSTR(SQLProduto.FieldByName('CODSTE').AsString, 'Entrada');
-
-      //VERIFICANDO A SUBSTITUIÇÃO TRIBUTÁRIA DE SAída
-      ReplicSTR(SQLProduto.FieldByName('CODSTs').AsString, 'Saida');
-
-      //Atualizando Produtos
-      if (SQLProduto.SQL.Count > 0) then
-      begin
-
-        REPLICA_PRODUTOS.params[0].Value := CodSub;
-        REPLICA_PRODUTOS.params[1].Value := CodGru;
-        REPLICA_PRODUTOS.params[2].Value := SQLProduto.FieldByName('DSCPRO').AsString;
-        REPLICA_PRODUTOS.params[3].Value := SQLProduto.FieldByName('CODPRO').AsString;
-        REPLICA_PRODUTOS.params[4].Value := SQLProduto.FieldByName('DSRPRO').AsString;
-        REPLICA_PRODUTOS.params[5].Value := SQLProduto.FieldByName('LOCPRO').AsString;
-
-        if (SQLProduto.FieldByName('CODTIP').IsNull) then
-          REPLICA_PRODUTOS.params[6].clear
-        else
-          REPLICA_PRODUTOS.params[6].Value := SQLProduto.FieldByName('CODTIP').Value;
-
-        if (SQLProduto.FieldByName('CODMRC').isnull) then
-          REPLICA_PRODUTOS.params[7].clear
-        else
-          REPLICA_PRODUTOS.params[7].Value := SQLProduto.FieldByName('CODMRC').Value;
-
-        REPLICA_PRODUTOS.params[8].Value := SQLProduto.FieldByName('CODUNE').AsString;
-        REPLICA_PRODUTOS.params[9].Value := SQLProduto.FieldByName('CODUNS').AsString;
-
-        if (SQLProduto.FieldByName('CODCAT').isnull) then
-          REPLICA_PRODUTOS.params[10].clear
-        else
-          REPLICA_PRODUTOS.params[10].Value := SQLProduto.FieldByName('CODCAT').Value;
-
-        REPLICA_PRODUTOS.params[11].Value := SQLProduto.FieldByName('SIMPRO').AsString;
-        REPLICA_PRODUTOS.params[12].Value := SQLProduto.FieldByName('IDEPRO').AsString;
-        REPLICA_PRODUTOS.params[13].Value := SQLProduto.FieldByName('REFPRO').AsString;
-        REPLICA_PRODUTOS.params[14].Value := SQLProduto.FieldByName('NUMPRO').AsString;
-        REPLICA_PRODUTOS.params[15].Value := SQLProduto.FieldByName('QTEPRO').Value;
-        REPLICA_PRODUTOS.params[16].Value := SQLProduto.FieldByName('QTSPRO').Value;
-
-        if (REPLICA_PRODUTOS.params[17].isnull) then
-          REPLICA_PRODUTOS.params[17].clear
-        else
-          REPLICA_PRODUTOS.params[17].Value := SQLProduto.FieldByName('CODCOM').AsString;
-
-        REPLICA_PRODUTOS.params[18].Value := SQLProduto.FieldByName('QTDVOL').Value;
-        REPLICA_PRODUTOS.params[19].Value := SQLProduto.FieldByName('QTDEMB').Value;
-        REPLICA_PRODUTOS.params[20].Value := SQLProduto.FieldByName('PESCUB').Value;
-        REPLICA_PRODUTOS.params[21].Value := SQLProduto.FieldByName('PESLIQ').Value;
-        REPLICA_PRODUTOS.params[22].Value := SQLProduto.FieldByName('PESBRT').Value;
-        REPLICA_PRODUTOS.params[23].Value := CodClp;
-        REPLICA_PRODUTOS.ExecProc;
-        ReplicaEstBar(CODCLP, CODGRU, CODSUB, CODPRO);
-        DBEmerion1.Commit;
-
-      end;
-    except on E: Exception do
-      begin
-        if DebugHook > 0 then
-          fMsg(E.Message, 'I')
-        else
-          fMsg('Produto Não Replicado', 'I');
-
-        DBEmerion1.Rollback;
-      end;
-    end;
-  finally
-    FreeAndNil(SQLTemp);
-    FreeAndNil(SQLProduto);
-  end;
-
-end;
-
-procedure TfmManGDB.ReplicaCategoria(codCat: integer);
-var
-  SQLTEMP: TwwQuery;
-begin
-  try
-    SQLTemp := TwwQuery.Create(Self);
-    SQLTemp.DatabaseName := 'isade';
-    SQLTEMP.sql.Text := 'select * from estcat where codcat = ' + QuotedStr(intToStr(codCat));
-    sqltemp.active := true;
-    if ((session.IsAlias('Emerion_01') = True) and (SQLTEMP.sql.Count > 0)) then
-    begin
-      REPLIC_CATEGORIAS.Params[0].Value := SQLTemp.FieldByName('CODCAT').Value;
-      REPLIC_CATEGORIAS.Params[1].Value := SQLTemp.FieldByName('NOMCAT').AsString;
-      REPLIC_CATEGORIAS.ExecProc;
-    end;
-  finally
-    FreeAndNil(SQLTEMP);
-  end;
-end;
-
-procedure TfmManGDB.ReplicSTR(CodStr, TipStr: string);
-var
-  SQLTEMP: TwwQuery;
-  Replica: string;
-begin
-  try
-    SQLTemp := TwwQuery.Create(Self);
-    SQLTemp.DatabaseName := 'isade';
-    SQLTEMP.SQL.Text := 'select * from ESTSTR where CODSTR = ' + QuotedStr(CodStr) +
-      ' and TIPSTR = ' + QuotedStr(TipStr);
-    SQLTEMP.Active := True;
-
-    //Verificando se replica as regras nos parametros
-    Replica := fmManGDB.BuscaSimples('ESTPAR', 'REPLICA_REGRAS', ' 1=1 ');
-    if Replica = '1' then
-    begin
-      if ((session.IsAlias('Emerion_01')) and (SQLTEMP.sql.Count > 0)) then
-      begin
-        //Replicando ESTSTR
-        REPLIC_ESTSTR.params[0].value := SQLTemp.FieldByName('CODSTR').AsString;
-        REPLIC_ESTSTR.params[1].value := SQLTemp.FieldByName('TIPSTR').AsString;
-        REPLIC_ESTSTR.params[2].value := SQLTemp.FieldByName('NOMSTR').AsString;
-        REPLIC_ESTSTR.ExecProc;
-      end;
-    end;
-  finally
-    FreeAndNil(SQLTEMP);
-  end;
-end;
-
-procedure TfmManGDB.ReplicaUFE(SigUfe, CodStr, TipStr: string);
-var
-  Replica: string;
-  SQLTEMP: TwwQuery;
-  SQLTEMP2: TwwQuery;
-begin
-  try
-    try
-      dbEmerion1.Open;
-
-      dbEmerion1.StartTransaction;
-
-      SQLTemp := TwwQuery.Create(Self);
-      SQLTemp2 := TwwQuery.Create(Self);
-      SQLTemp.DatabaseName := 'isade';
-      SQLTemp2.DatabaseName := 'isade';
-      SQLTEMP.SQL.Text := 'select * from GERUFE where SIGUFE = ' + QuotedStr(SigUfe);
-      SQLTEMP.Active := True;
-
-      //Verificando se replica as regras nos parametros
-      Replica := fmManGDB.BuscaSimples('ESTPAR', 'REPLICA_REGRAS', ' 1=1 ');
-      if Replica = '1' then
-      begin
-        if session.IsAlias('Emerion_01') then
-        begin
-          //Gerufe
-          SQLTemp2.Active := False;
-          SQLTemp2.SQL.Text := 'select * from ESTUFE where CODSTR = ' + QuotedStr(CodStr) +
-            ' and TIPSTR = ' + QuotedStr(TipStr);
-          SQLTEMP2.Active := True;
-
-          if SQLTemp2.FieldByName('SIGUFE').IsNull then
-          begin
-            SQLTemp2.SQL.Text := 'Select * from GERUFE where SIGUFE = ' + QuotedStr(SQLTemp.FieldByName('SIGUFE').AsString);
-            SQLTemp2.Active := True;
-            if SQLTemp.IsEmpty = false then
-            begin
-              REPLIC_GERUFE.Params[0].Value := SQLTemp2.fieldbyname('SIGUFE').AsString;
-              REPLIC_GERUFE.Params[1].Value := SQLTemp2.fieldbyname('NOMUFE').AsString;
-              REPLIC_GERUFE.Params[2].Value := SQLTemp2.fieldbyname('DSCUFE').value;
-              REPLIC_GERUFE.Params[3].Value := SQLTemp2.fieldbyname('NROUFE').value;
-              REPLIC_GERUFE.Params[4].Value := SQLTemp2.fieldbyname('SUBTRB').AsString;
-              REPLIC_GERUFE.Params[5].Value := SQLTemp2.fieldbyname('DSCCOM').value;
-              REPLIC_GERUFE.Params[6].Value := SQLTemp2.fieldbyname('QTDICM').value;
-              REPLIC_GERUFE.Params[7].Value := SQLTemp2.fieldbyname('SEQICM').value;
-              REPLIC_GERUFE.Params[8].Value := SQLTemp2.fieldbyname('FLGTRG').AsString;
-              REPLIC_GERUFE.Params[9].Value := SQLTemp2.fieldbyname('QTDPRO').value;
-              REPLIC_GERUFE.Params[10].Value := SQLTemp2.fieldbyname('SEQPRO').value;
-              REPLIC_GERUFE.ExecProc;
-            end;
-          end;
-
-          //FINTCL
-          SQLTemp.Active := False;
-          SQLTemp.SQL.Text := 'select * from ESTUFE where CODSTR = ' + QuotedStr(CodStr) +
-            ' and TIPSTR = ' + QuotedStr(TipStr);
-          SQLTEMP.Active := True;
-
-          SQLTEMP2.Active := false;
-          SQLTemp2.SQL.Text := 'select codtcl, nomtcl from ' +
-            ' fintcl tcl inner join estufe ufe on tcl.codtcl = ufe.codtcl ' +
-            ' where ufe.sigufe = ' + quotedstr(SigUfe);
-          SQLTemp2.active := true;
-
-          SQLTEMP2.Active := False;
-          SQLTEMP2.SQL.Text := 'select * from ESTTXF where CODTXF = ' +
-            QuotedStr(SQLTemp.FieldByName('CODTXF').AsString);
-          SQLTEMP2.Active := True;
-          if (SQLTemp.FieldByName('CODTXF').IsNull = FALSE) then
-          begin
-            REPLIC_TEXTOFISCAL.Params[0].Value := SQLTemp2.FieldByName('CODTXF').AsString;
-            REPLIC_TEXTOFISCAL.Params[1].Value := SQLTemp2.FieldByName('TIPTXF').AsString;
-            REPLIC_TEXTOFISCAL.Params[2].Value := SQLTemp2.FieldByName('DSRTXF').AsString;
-            REPLIC_TEXTOFISCAL.Params[3].Value := SQLTemp2.FieldByName('DSCTXF').AsString;
-            REPLIC_TEXTOFISCAL.ExecProc;
-          end;
-
-          //ESTTME
-          SQLTEMP2.Active := False;
-          SQLTEMP2.SQL.Text := 'select * from ESTTME where CODTME = ' +
-            QuotedStr(SQLTEMP.FieldByName('CODTME').ASString);
-          SQLTEMP2.Active := True;
-
-          if (SQLTemp.FieldByName('CODTME').IsNull = False) then
-          begin
-            REPLIC_ESTTME.Params[0].Value := SQLTemp2.FieldByName('CODTME').AsString;
-            REPLIC_ESTTME.Params[1].Value := SQLTemp2.FieldByName('NOMTME').AsString;
-            REPLIC_ESTTME.ExecProc;
-          end;
-
-          //Replicando ESTSTR
-          SQLTEMP2.Active := False;
-          SQLTEMP2.SQL.Text := 'select * from ESTSTR where CODSTR = ' + QuotedStr(CodStr) + ' and TIPSTR = ' + QuotedStr(TipStr);
-          SQLTEMP2.Active := True;
-
-          REPLIC_ESTSTR.params[0].Value := SQLTemp2.FieldByName('CODSTR').AsString;
-          REPLIC_ESTSTR.params[1].Value := SQLTemp2.FieldByName('TIPSTR').AsString;
-          REPLIC_ESTSTR.params[2].Value := SQLTemp2.FieldByName('NOMSTR').AsString;
-          REPLIC_ESTSTR.ExecProc;
-
-          //ESTIPI
-          if ((SQLTemp.FieldByName('REGIPI').IsNull = FALSE) and (SQLTemp.FieldByName('TIPIPI').IsNull = FALSE)) then
-          begin
-            SQLTemp2.Active := False;
-            SQLTemp2.sql.text := 'Select * from ESTIPI where CODIPI = ' + QuotedStr(SQLTemp.FieldByName('CODIPI').AsString) + ' and REGIPI = ' +
-              QuotedStr(SQLTemp.FieldByName('REGIPI').AsString);
-            SQLTemp2.Active := True;
-            if not SQLTemp2.IsEmpty then
-            begin
-              REPLIC_IPI.Params[0].Value := SQLTemp2.fieldbyname('CODIPI').AsString;
-              REPLIC_IPI.Params[1].Value := SQLTemp2.fieldbyname('TIPIPI').AsString;
-              REPLIC_IPI.Params[2].Value := SQLTemp2.fieldbyname('NOMIPI').AsString;
-              REPLIC_IPI.Params[3].Value := SQLTemp2.fieldbyname('REGIPI').AsString;
-              REPLIC_IPI.Params[4].Value := SQLTemp2.fieldbyname('TRBIPI').AsString;
-              REPLIC_IPI.Params[5].Value := SQLTemp2.fieldbyname('PERIPI').value;
-              REPLIC_IPI.Params[6].Value := SQLTemp2.fieldbyname('REDIPI').value;
-              REPLIC_IPI.Params[7].Value := SQLTemp2.fieldbyname('RECIPI').value;
-              REPLIC_IPI.Params[8].Value := SQLTemp2.fieldbyname('BASIPI').value;
-              REPLIC_IPI.Params[9].Value := SQLTemp2.fieldbyname('CLSIPI').AsString;
-              REPLIC_IPI.Params[10].Value := SQLTemp2.fieldbyname('PERIMP').value;
-              REPLIC_IPI.Params[11].Value := SQLTemp2.fieldbyname('CODTXF').AsString;
-              REPLIC_IPI.Params[12].Value := SQLTemp2.fieldbyname('ID_ESTNCM').value;
-              REPLIC_IPI.ExecProc;
-            end;
-          end;
-
-          //ESTICM
-          if ((SQLTEMP.FieldByName('REGICM').IsNull = false) and (SQLTEMP.FieldByName('TIPICM').IsNull = false)) then
-          begin
-            SQLTEMP2.Active := False;
-            SQLTEMP2.sql.text := 'Select * from ESTICM where CODICM = ' + QuotedStr(SQLTEMP.FieldByName('REGICM').AsString) + ' and TIPICM = ' +
-              QuotedStr(SQLTEMP.FieldByName('TIPICM').AsString);
-            SQLTEMP2.Active := True;
-            if not SQLTEMP2.IsEmpty then
-            begin
-              REPLIC_ICM.Params[0].Value := SQLTEMP2.fieldbyname('CODICM').AsString;
-              REPLIC_ICM.Params[1].Value := SQLTEMP2.fieldbyname('TIPICM').AsString;
-              REPLIC_ICM.Params[2].Value := SQLTEMP2.fieldbyname('NOMICM').AsString;
-              REPLIC_ICM.Params[3].Value := SQLTEMP2.fieldbyname('TRBICM').AsString;
-              REPLIC_ICM.Params[4].Value := SQLTEMP2.fieldbyname('PERICM').value;
-              REPLIC_ICM.Params[5].Value := SQLTEMP2.fieldbyname('REDICM').value;
-              REPLIC_ICM.Params[6].Value := SQLTEMP2.fieldbyname('RECICM').value;
-              REPLIC_ICM.Params[7].Value := SQLTEMP2.fieldbyname('BASICM').value;
-              REPLIC_ICM.Params[8].Value := SQLTEMP2.fieldbyname('INCREV').value;
-              REPLIC_ICM.Params[9].Value := SQLTEMP2.fieldbyname('INCFIN').value;
-              REPLIC_ICM.Params[10].Value := SQLTEMP2.fieldbyname('ITECON').AsString;
-              REPLIC_ICM.Params[11].Value := SQLTEMP2.fieldbyname('CODST1').AsString;
-              REPLIC_ICM.Params[12].Value := SQLTEMP2.fieldbyname('CODST2').AsString;
-              REPLIC_ICM.ExecProc;
-            end;
-          end;
-
-          //Replicando ESTSTR
-          SQLTEMP2.Active := False;
-          SQLTEMP2.SQL.Text := 'Select * from ESTSTR where CODSTR = ' + QuotedStr(CodStr) +
-            ' and TIPSTR = ' + QuotedSTR(TipStr);
-          SQLTEMP2.Active := True;
-
-          REPLIC_ESTSTR.params[0].Value := SQLTEMP2.FieldByName('CODSTR').AsString;
-          REPLIC_ESTSTR.params[1].Value := SQLTEMP2.FieldByName('TIPSTR').AsString;
-          REPLIC_ESTSTR.params[2].Value := SQLTEMP2.FieldByName('NOMSTR').AsString;
-          REPLIC_ESTSTR.ExecProc;
-
-          SQLTEMP.active := false;
-          SQLTEMP.SQL.Text := 'select * from estufe where codstr = ' + quotedstr(CodStr) +
-            'and tipstr = ' + quotedstr(tipstr) +
-            ' and sigufe = ' + quotedstr(SigUfe);
-          SQLTEMP.active := true;
-
-          REPLIC_ESTUFE.Params[0].Value := CodStr;
-          REPLIC_ESTUFE.Params[1].Value := TipStr;
-          REPLIC_ESTUFE.Params[2].Value := SigUfe;
-
-          if not (SQLTEMP.FieldByName('ICMSUB').isNull) then
-            REPLIC_ESTUFE.Params[3].Value := SQLTEMP.FieldByName('ICMSUB').Value
-          else
-            REPLIC_ESTUFE.Params[3].Clear;
-
-          if not (SQLTEMP.FieldByName('MRGSUB').isNull) then
-            REPLIC_ESTUFE.Params[4].Value := SQLTEMP.FieldByName('MRGSUB').Value
-          else
-            REPLIC_ESTUFE.Params[4].Clear;
-
-          if not (SQLTEMP.FieldByName('BASESB').isNull) then
-            REPLIC_ESTUFE.Params[5].Value := SQLTEMP.FieldByName('BASESB').Value
-          else
-            REPLIC_ESTUFE.Params[5].Clear;
-
-          if not (SQLTEMP.FieldByName('CODCFO').isNull) then
-            REPLIC_ESTUFE.Params[6].Value := SQLTEMP.FieldByName('CODCFO').AsString
-          else
-            REPLIC_ESTUFE.Params[6].Clear;
-
-          if not (SQLTEMP.FieldByName('REGICM').isNull) then
-            REPLIC_ESTUFE.Params[7].Value := SQLTEMP.FieldByName('REGICM').AsString
-          else
-            REPLIC_ESTUFE.Params[7].Clear;
-
-          if not (SQLTEMP.FieldByName('TIPICM').isNull) then
-            REPLIC_ESTUFE.Params[8].Value := SQLTEMP.FieldByName('TIPICM').AsString
-          else
-            REPLIC_ESTUFE.Params[8].Clear;
-
-          if not (SQLTEMP.FieldByName('REGIPI').isNull) then
-            REPLIC_ESTUFE.Params[9].Value := SQLTEMP.FieldByName('REGIPI').AsString
-          else
-            REPLIC_ESTUFE.Params[9].Clear;
-
-          if not (SQLTEMP.FieldByName('TIPIPI').isNull) then
-            REPLIC_ESTUFE.Params[10].Value := SQLTEMP.FieldByName('TIPIPI').AsString
-          else
-            REPLIC_ESTUFE.Params[10].Clear;
-
-          if not (SQLTEMP.FieldByName('CODTXF').isNull) then
-            REPLIC_ESTUFE.Params[11].Value := SQLTEMP.FieldByName('CODTXF').AsString
-          else
-            REPLIC_ESTUFE.Params[11].Clear;
-
-          if not (SQLTEMP.FieldByName('CODTME').isNull) then
-            REPLIC_ESTUFE.Params[12].Value := SQLTEMP.FieldByName('CODTME').AsString
-          else
-            REPLIC_ESTUFE.Params[12].Clear;
-
-          if not (SQLTEMP.FieldByName('DTEENV').isNull) then
-            REPLIC_ESTUFE.Params[13].Value := SQLTEMP.FieldByName('DTEENV').AsDateTime
-          else
-            REPLIC_ESTUFE.Params[13].Clear;
-
-          if not (SQLTEMP.FieldByName('CODTCL').isNull) then
-            REPLIC_ESTUFE.Params[14].Value := SQLTEMP.FieldByName('CODTCL').Value
-          else
-            REPLIC_ESTUFE.Params[14].Clear;
-
-          REPLIC_ESTUFE.ExecProc;
-
-          dbEmerion1.Commit;
-
-        end;
-      end;
-    except
-      dbEmerion1.Rollback;
-    end;
-  finally
-    FreeAndNil(SQLTEMP);
-    FreeAndNil(SQLTEMP2);
-  end;
-end;
-
-procedure TfmManGDB.ReplicaTipoEmbalagem(CodEmb: string);
-var
-  SQLTEMP: TwwQuery;
-begin
-  try
-    SQLTemp := TwwQuery.Create(Self);
-    SQLTemp.DatabaseName := 'isade';
-    SQLTEMP.Active := False;
-    SQLTEMP.SQL.Text := 'select * from ESTEMB where CODEMB = ' + QuotedStr(CodEmb);
-    SQLTEMP.Active := True;
-
-    if ((session.IsAlias('Emerion_01') = True) and (SQLTEMP.SQL.Count > 0)) then
-    begin
-      Replica_tipoEmbalagem.Params[0].Value := SQLTEMP.FieldByName('CODEMB').asString;
-      Replica_tipoEmbalagem.Params[1].Value := SQLTEMP.FieldByName('NOMEMB').asString;
-      Replica_tipoEmbalagem.ExecProc;
-    end;
-  finally
-    FreeAndNil(SQLTEMP);
-  end;
-
-end;
-
-procedure TfmManGDB.ReplicaGerUfe(SigUfe: string);
-var
-  SQLTEMP: TwwQuery;
-begin
-  try
-    SQLTemp := TwwQuery.Create(Self);
-    SQLTemp.DatabaseName := 'isade';
-    SQLTEMP.Active := False;
-    SQLTEMP.SQL.Text := 'select * from GERUFE where SIGUFE = ' + QuotedStr(SigUfe);
-    SQLTEMP.Active := True;
-
-    if ((session.IsAlias('Emerion_01') = True) and (SQLTEMP.SQL.Count > 0)) then
-    begin
-      try
-        REPLIC_GERUFE.Params[0].value := SQLTEMP.FieldByName('SIGUFE').AsString;
-        REPLIC_GERUFE.Params[1].value := SQLTEMP.FieldByName('NOMUFE').AsString;
-        REPLIC_GERUFE.Params[2].value := SQLTEMP.FieldByName('DSCUFE').value;
-        REPLIC_GERUFE.Params[3].value := SQLTEMP.FieldByName('NROUFE').value;
-        REPLIC_GERUFE.Params[4].value := SQLTEMP.FieldByName('SUBTRB').AsString;
-        REPLIC_GERUFE.Params[5].value := SQLTEMP.FieldByName('DSCCOM').value;
-        REPLIC_GERUFE.Params[6].value := SQLTEMP.FieldByName('QTDICM').value;
-        REPLIC_GERUFE.Params[7].value := SQLTEMP.FieldByName('SEQICM').value;
-        REPLIC_GERUFE.Params[8].value := SQLTEMP.FieldByName('FLGTRG').AsString;
-        REPLIC_GERUFE.Params[9].value := SQLTEMP.FieldByName('QTDPRO').value;
-        REPLIC_GERUFE.Params[10].value := SQLTEMP.FieldByName('SEQPRO').value;
-        REPLIC_GERUFE.ExecProc;
-      except on E: Exception do
-          showmessage(E.message);
-      end;
-    end;
-  finally
-    FreeAndNil(SQLTEMP);
-  end;
-
-end;
-
-procedure TfmManGDB.ReplicaIPI(CodIpi, TipIpi, CodTxf: string);
-var
-  Replica: string;
-  SQLTEMP: TwwQuery;
-  SQLTEMP2: TwwQuery;
-begin
-  try
-    SQLTemp := TwwQuery.Create(Self);
-    SQLTemp.DatabaseName := 'isade';
-    SQLTemp2 := TwwQuery.Create(Self);
-    SQLTemp2.DatabaseName := 'isade';
-
-    SQLTEMP.Active := False;
-    SQLTEMP.SQL.Text := 'select * FROM ESTIPI WHERE CODIPI = ' + QuotedStr(CODIPI) + ' AND TIPIPI = ' + QuotedStr(TIPIPI);
-    SQLTEMP.Active := True;
-
-    //Verificando se replica as regras nos parametros
-    Replica := fmManGDB.BuscaSimples('ESTPAR', 'REPLICA_REGRAS', ' 1=1 ');
-    if Replica = '1' then
-    begin
-      if ((session.IsAlias('Emerion_01')) and (SQLTEMP.SQL.Count > 0)) then
-      begin
-        //Chamando procedure de textofiscal
-        if SQLTEMP.FieldByName('CODTXF').IsNull = false then
-        begin
-          SQLTEMP2.Active := False;
-          SQLTEMP2.SQL.Text := 'Select * from ESTTXF where CODTXF = ' + QuotedStr(CodTxf);
-          SQLTEMP2.Active := True;
-
-          REPLIC_TEXTOFISCAL.Params[0].Value := SQLTEMP2.FieldByName('CODTXF').AsString;
-          REPLIC_TEXTOFISCAL.Params[1].Value := SQLTEMP2.FieldByName('TIPTXF').AsString;
-          REPLIC_TEXTOFISCAL.Params[2].Value := SQLTEMP2.FieldByName('DSRTXF').AsString;
-          REPLIC_TEXTOFISCAL.Params[3].Value := SQLTEMP2.FieldByName('DSCTXF').AsString;
-          REPLIC_TEXTOFISCAL.ExecProc;
-        end;
-        //Chamando a procedure de NCM
-
-        if SQLTEMP.FieldByName('ID_ESTNCM').IsNull = false then
-        begin
-          SQLTEMP2.Active := False;
-          SQLTEMP2.SQL.Text := 'select * from ESTNCM where id_EstNcm = ' + QuotedStr(SQLTEMP.FieldByName('Id_EstNcm').AsString);
-          SQLTEMP2.Active := True;
-
-          REPLIC_NCM.Params[0].Value := SQLTEMP2.FieldByName('ID_ESTNCM').Value;
-          REPLIC_NCM.Params[1].Value := SQLTEMP2.FieldByName('NOMNCM').AsString;
-          REPLIC_NCM.Params[2].Value := SQLTEMP2.FieldByName('ID_ESTSEC').Value;
-          REPLIC_NCM.ExecProc;
-        end;
-
-        //Chamando procedure de IPI
-
-        REPLIC_IPI.Params[0].Value := SQLTEMP.FieldByName('CODIPI').AsString;
-
-        REPLIC_IPI.Params[1].Value := SQLTEMP.FieldByName('TIPIPI').AsString;
-
-        REPLIC_IPI.Params[2].Value := SQLTEMP.FieldByName('NOMIPI').AsString;
-
-        REPLIC_IPI.Params[3].Value := SQLTEMP.FieldByName('REGIPI').AsString;
-
-        REPLIC_IPI.Params[4].Value := SQLTEMP.FieldByName('TRBIPI').AsString;
-
-        REPLIC_IPI.Params[5].Value := SQLTEMP.FieldByName('PERIPI').Value;
-
-        REPLIC_IPI.Params[6].Value := SQLTEMP.FieldByName('REDIPI').Value;
-
-        REPLIC_IPI.Params[7].Value := SQLTEMP.FieldByName('RECIPI').Value;
-
-        REPLIC_IPI.Params[8].Value := SQLTEMP.FieldByName('BASIPI').Value;
-
-        REPLIC_IPI.Params[9].Value := SQLTEMP.FieldByName('CLSIPI').AsString;
-
-        REPLIC_IPI.Params[10].Value := SQLTEMP.FieldByName('PERIMP').Value;
-
-        REPLIC_IPI.Params[11].Value := SQLTEMP.FieldByName('CODTXF').AsString;
-
-        REPLIC_IPI.Params[12].Value := SQLTEMP.FieldByName('ID_ESTNCM').Value;
-
-        REPLIC_IPI.ExecProc;
-
-      end;
-    end;
-  finally
-    FreeAndNil(SQLTEMP);
-    FreeAndNil(SQLTEMP2);
-  end;
-end;
-
-procedure TfmManGDB.ReplicaICM(CodIcm, TipIcm: string);
-var
-  Replica: string;
-  SQLTEMP: TwwQuery;
-  SQLTEMP2: TwwQuery;
-begin
-  try
-    SQLTemp := TwwQuery.Create(Self);
-    SQLTemp.DatabaseName := 'isade';
-    SQLTemp2 := TwwQuery.Create(Self);
-    SQLTemp2.DatabaseName := 'isade';
-    SQLTEMP.Active := False;
-    SQLTEMP.SQL.Text := 'Select * from ESTICM WHERE CODICM = ' + QuotedStr(codicm) + ' AND TIPICM = ' + QuotedStr(tipicm);
-    SQLTEMP.Active := True;
-
-    Replica := fmManGDB.BuscaSimples('ESTPAR', 'REPLICA_REGRAS', ' 1=1 ');
-    if Replica = '1' then
-    begin
-      if session.IsAlias('Emerion_01') then
-      begin
-        //Verificando ST1
-        if SQLTEMP.FieldByName('CODST1').IsNull = false then
-        begin
-          SQLTEMP2.Active := False;
-          SQLTEMP2.SQL.Text := 'Select * from EstSt1 where CodSt1 = ' + QuotedStr(SQLTEMP.FieldByName('CODST1').AsString);
-          SQLTEMP2.Active := True;
-
-          REPLIC_ST1.Params[0].Value := SQLTEMP2.FieldByName('CODST1').AsString;
-          REPLIC_ST1.Params[1].Value := SQLTEMP2.FieldByName('NOMST1').AsString;
-          REPLIC_ST1.ExecProc;
-        end;
-
-        //Verificando ST2
-        if SQLTEMP.FieldByName('CODST2').IsNull = false then
-        begin
-          SQLTEMP2.Active := False;
-          SQLTEMP2.SQL.Text := 'Select * from EstSt2 where CodSt2 = ' + QuotedStr(SQLTEMP.FieldByName('CODST2').AsString);
-          SQLTEMP2.Active := True;
-          REPLIC_ST2.Params[0].Value := SQLTEMP2.FieldByName('CODST2').AsString;
-          REPLIC_ST2.Params[1].Value := SQLTEMP2.FieldByName('NOMST2').AsString;
-          REPLIC_ST2.ExecProc;
-        end;
-
-        //Replicando ICMS
-        REPLIC_ICM.Params[0].Value := SQLTEMP.FieldByName('CODICM').AsString;
-        REPLIC_ICM.Params[1].Value := SQLTEMP.FieldByName('TIPICM').AsString;
-        REPLIC_ICM.Params[2].Value := SQLTEMP.FieldByName('NOMICM').AsString;
-        REPLIC_ICM.Params[3].Value := SQLTEMP.FieldByName('TRBICM').AsString;
-        REPLIC_ICM.Params[4].Value := SQLTEMP.FieldByName('PERICM').value;
-        REPLIC_ICM.Params[5].Value := SQLTEMP.FieldByName('REDICM').value;
-        REPLIC_ICM.Params[6].Value := SQLTEMP.FieldByName('RECICM').value;
-        REPLIC_ICM.Params[7].Value := SQLTEMP.FieldByName('BASICM').value;
-        REPLIC_ICM.Params[8].Value := SQLTEMP.FieldByName('INCREV').value;
-        REPLIC_ICM.Params[9].Value := SQLTEMP.FieldByName('INCFIN').value;
-        REPLIC_ICM.Params[10].Value := SQLTEMP.FieldByName('ITECON').AsString;
-        REPLIC_ICM.Params[11].Value := SQLTEMP.FieldByName('CODST1').value;
-        REPLIC_ICM.Params[12].Value := SQLTEMP.FieldByName('CODST2').value;
-        REPLIC_ICM.ExecProc;
-      end;
-    end;
-  finally
-    FreeAndNil(SQLTEMP);
-    FreeAndNil(SQLTEMP2);
-  end;
-
-end;
-
-procedure TfmManGDB.ReplicaUnidade(CodUnd: string);
-var
-  SQLTEMP: TwwQuery;
-begin
-  try
-    SQLTemp := TwwQuery.Create(Self);
-    SQLTemp.DatabaseName := 'isade';
-    SQLTEMP.Active := False;
-    SQLTEMP.SQL.Text := 'Select * from EstUnd where CODUND = ' + QuotedStr(CodUnd);
-    SQLTEMP.Active := true;
-
-    if ((session.IsAlias('Emerion_01')) and (SQLTEMP.SQL.Count > 0)) then
-    begin
-      REPLIC_UNIDADE.Params[0].Value := SQLTEMP.FieldByName('CODUND').AsString;
-      REPLIC_UNIDADE.Params[1].Value := SQLTEMP.FieldByName('NOMUND').AsString;
-      REPLIC_UNIDADE.ExecProc;
-    end;
-  finally
-    FreeAndNil(SqlTemp);
-  end;
-end;
-
-procedure TfmManGDB.ReplicaMarcas(CodMrc: Integer);
-var
-  SQLTEMP: TwwQuery;
-begin
-  try
-    SQLTemp := TwwQuery.Create(Self);
-    SQLTemp.DatabaseName := 'isade';
-    SQLTEMP.Active := False;
-    SQLTEMP.SQL.Text := 'Select * from EstMrc where CodMrc = ' + QuotedStr(intToStr(CodMrc));
-    SQLTEMP.Active := true;
-
-    if ((session.IsAlias('Emerion_01') = True) and (SQLTEMP.SQL.Count > 0)) then
-    begin
-      REPLIC_MARCA.Params[0].Value := SQLTEMP.FieldByname('CODMRC').Value;
-      REPLIC_MARCA.PARAMS[1].Value := SQLTEMP.FieldByname('NOMMRC').AsString;
-      REPLIC_MARCA.ExecProc;
-    end;
-  finally
-    FreeAndNIl(SQLTEMP);
-  end;
-end;
-
-procedure TfmManGDB.ReplicaGrupo(CodGru: string);
-var
-  SQLTEMP: TwwQuery;
-begin
-  try
-    SQLTemp := TwwQuery.Create(Self);
-    SQLTemp.DatabaseName := 'isade';
-    SQLTEMP.SQL.Text := 'Select * from EstGru where CodGru = ' + QuotedStr(CodGru);
-    SQLTEMP.Active := true;
-
-    if ((session.IsAlias('Emerion_01') = true) and (SQLTEMP.SQL.Count > 0)) then
-    begin
-      REPLIC_GRUPO.Params[0].Value := SQLTEMP.FieldByName('CODGRU').AsString;
-      REPLIC_GRUPO.Params[1].Value := SQLTEMP.FieldByName('NOMGRU').AsString;
-      REPLIC_GRUPO.ExecProc;
-    end;
-  finally
-    FreeAndNil(SQLTEMP);
-  end;
-end;
-
-procedure TfmManGDB.ReplicaSubGrupo(CodGru, CodSub: string);
-var
-  SQLTEMP: TwwQuery;
-begin
-  try
-    SQLTemp := TwwQuery.Create(Self);
-    SQLTemp.DatabaseName := 'isade';
-    SQLTEMP.Active := False;
-    SQLTEMP.SQL.Text := 'Select * from EstSub where CodGru = ' + QuotedStr(CodGru) +
-      ' and CodSub = ' + QuotedStr(CodSub);
-    SQLTEMP.Active := true;
-
-    if ((session.IsAlias('Emerion_01') = true) and (SQLTEMP.SQL.Count > 0)) then
-    begin
-      REPLIC_SUBGRUPO.Params[0].Value := SQLTEMP.FieldByName('CODGRU').AsString;
-      REPLIC_SUBGRUPO.Params[1].Value := SQLTEMP.FieldByName('CODSUB').AsString;
-      REPLIC_SUBGRUPO.Params[2].Value := SQLTEMP.FieldByName('NOMSUB').AsString;
-      REPLIC_SUBGRUPO.Params[3].Value := SQLTEMP.FieldByName('NROSUB').Value;
-      REPLIC_SUBGRUPO.Params[4].Value := SQLTEMP.FieldByName('QTDPON').Value;
-      REPLIC_SUBGRUPO.ExecProc;
-    end;
-  finally
-    FreeAndNil(SQLTEMP);
-  end;
-end;
-
-procedure TfmManGDB.ReplicaTipoItem(CodTip: Integer);
-var
-  SQLTENP: Twwquery;
-begin
-  try
-    SQLTENP := TwwQuery.Create(Self);
-    SQLTENP.DataBaseName := 'isade';
-    SQLTENP.SQL.Text := 'Select * from esttip where codtip = ' + QuotedStr(intToStr(Codtip));
-    SQLTENP.Active := True;
-    if session.IsAlias('Emerion_01') then
-    begin
-      try
-        REPLIC_TIPOITENS.params[0].Value := SQLTENP.FieldByName('CODTIP').Value;
-        REPLIC_TIPOITENS.Params[1].Value := SQLTENP.FieldByName('NOMTIP').AsString;
-        REPLIC_TIPOITENS.ExecProc;
-      except on E: Exception do
-          showmessage(E.message);
-      end;
-    end;
-  finally
-    FreeAndNil(SQLTENP);
-  end;
 end;
 
 procedure TfmManGDB.AtualizaRegras(CodClp, Codgru, CodSub, CodPro: string);
@@ -1557,7 +731,7 @@ begin
       DBEmerion1.Commit;
     except
       DBEmerion1.Rollback;
-      Fmsg('Regras não replicadas', 'I');
+      Fmsg('Regras nï¿½o replicadas', 'I');
     end;
   finally
     FreeAndNil(SQLProduto);
@@ -1575,7 +749,7 @@ end;
 
 procedure TfmManGDB.CarregaCboICMS(SN: Boolean; Libera: string = 'B');
 begin
-  //Libera : 'L' Permite todas as Situações cadastradas 'B' diferencia entre Regime normal e Simples Nacional
+  //Libera : 'L' Permite todas as Situaï¿½ï¿½es cadastradas 'B' diferencia entre Regime normal e Simples Nacional
 
   //ST ICMS
   SQLST2.Active := false;
@@ -1626,52 +800,6 @@ begin
   WServidor := Copy(WServidor, 13, 255);
   WServidor := Copy(WServidor, 1, (Length(WServidor)));
   result := WServidor;
-end;
-
-procedure TfmManGDB.ReplicaEstIte(CodEmp, CodClp, CodGru, CodSub,
-  CodPro: string);
-var
-  SQLTEMP: Twwquery;
-begin
-  try
-    if (BuscaSimples('EstPar', 'REPLICA_PRECOS', '1=1') = '1') then
-    begin
-      SQLTEMP := TwwQuery.Create(Self);
-      SQLTEMP.DataBaseName := 'isade';
-      SQLTEMP.SQL.Text := 'Select vb1ite, vb2ite, vb3ite, vb4ite, vb5ite, VcrIte, MK1ITE, MK2ITE, MK3ITE, MK4ITE, MK5ITE from estite where' + #13 +
-        'CodEmp = ' + codemp + ' And codclp = ' + QuotedStr(codclp) + ' and codgru = ' + QuotedStr(codgru) +
-        ' and codsub = ' + QuotedStr(codsub) + ' and codpro = ' + QuotedStr(codpro);
-      SQLTEMP.Active := True;
-      if session.IsAlias('Emerion_01') then
-      begin
-        try
-          REPLIC_ESTITE.ParamByName('CODEMP').AsInteger := strToInt(CODEMP);
-          REPLIC_ESTITE.ParamByName('CODCLP').AsString := CODCLP;
-          REPLIC_ESTITE.ParamByName('CODGRU').AsString := CODGRU;
-          REPLIC_ESTITE.ParamByName('CODSUB').AsString := CODSUB;
-          REPLIC_ESTITE.ParamByName('CODPRO').AsString := CODPRO;
-          REPLIC_ESTITE.ParamByName('VB1ITE').AsFloat := SQLTEMP.FieldByName('VB1ITE').AsFloat;
-          REPLIC_ESTITE.ParamByName('VB2ITE').AsFloat := SQLTEMP.FieldByName('VB2ITE').AsFloat;
-          REPLIC_ESTITE.ParamByName('VB3ITE').AsFloat := SQLTEMP.FieldByName('VB3ITE').AsFloat;
-          REPLIC_ESTITE.ParamByName('VB4ITE').AsFloat := SQLTEMP.FieldByName('VB4ITE').AsFloat;
-          REPLIC_ESTITE.ParamByName('VB5ITE').AsFloat := SQLTEMP.FieldByName('VB5ITE').AsFloat;
-          REPLIC_ESTITE.ParamByName('VcrIte').AsFloat := SQLTEMP.FieldByName('VcrIte').AsFloat;
-          REPLIC_ESTITE.ParamByName('MK1ITE').AsFloat := SQLTEMP.FieldByName('MK1ITE').AsFloat;
-          REPLIC_ESTITE.ParamByName('MK2ITE').AsFloat := SQLTEMP.FieldByName('MK2ITE').AsFloat;
-          REPLIC_ESTITE.ParamByName('MK3ITE').AsFloat := SQLTEMP.FieldByName('MK3ITE').AsFloat;
-          REPLIC_ESTITE.ParamByName('MK4ITE').AsFloat := SQLTEMP.FieldByName('MK4ITE').AsFloat;
-          REPLIC_ESTITE.ParamByName('MK5ITE').AsFloat := SQLTEMP.FieldByName('MK5ITE').AsFloat;
-
-          REPLIC_ESTITE.ExecProc
-        except on E: Exception do
-            showmessage(E.message);
-        end;
-      end;
-    end;
-  finally
-    FreeAndNil(SQLTEMP);
-  end;
-
 end;
 
 procedure TfmManGDB.dbMainAfterConnect(Sender: TObject);
@@ -1815,7 +943,7 @@ begin
   else
   begin
     if DebugHook = 0 then
-      messagebox(0, pchar('Não foi encontrado arquivo CONFIG.INI. Favor verifique e tente novamente.'), 'Emerion', mb_ok + MB_ICONINFORMATION);
+      messagebox(0, pchar('Nï¿½o foi encontrado arquivo CONFIG.INI. Favor verifique e tente novamente.'), 'Emerion', mb_ok + MB_ICONINFORMATION);
 
   end;
 
@@ -1839,93 +967,6 @@ begin
       ini.free;
     end;
   end
-
-end;
-
-procedure TfmManGDB.ReplicaEstBar(CodClp, CodGru, CodSub, CodPro: string);
-var
-  SQLTEMP: TQuery;
-begin
-  SQLTEMP := TQuery.Create(nil);
-  try
-
-    SQLTEMP.Active := False;
-    SQLTEMP.DataBaseName := 'Isade';
-    SQLTEMP.SQL.Text := ' Select CODCLP,CODGRU,CODSUB,CODPRO,SEQBAR,CODBAR,NROBAR,'
-      + ' FLGINT,QTDEMB,TIPEMB,CODEMB,CUBEMB,PESEMB,ALTEMB,LAREMB,COMEMB,PESLIQ,PESBRT '
-      + ' From EstBar'
-      + ' Where EstBar.CodClp = ' + QuotedStr(CodClp)
-      + '   and EstBar.CodGru = ' + QuotedStr(CodGru)
-      + '   and EstBar.CodSub = ' + QuotedStr(CodSub)
-      + '   and EstBar.CodPro = ' + QuotedStr(CodPro);
-    SQLTEMP.Active := True;
-
-    SQLTEMP.first;
-
-    if (session.IsAlias('Emerion_01') = true) then
-    begin
-      while not SQLTEMP.Eof do
-      begin
-
-        ReplicaEstEmb(SQLTEMP.FieldByName('CODEMB').AsString);
-
-        REPLIC_ESTBAR.Params[0].Value := SQLTEMP.FieldByName('CODCLP').Value;
-        REPLIC_ESTBAR.Params[1].Value := SQLTEMP.FieldByName('CODGRU').Value;
-        REPLIC_ESTBAR.Params[2].Value := SQLTEMP.FieldByName('CODSUB').Value;
-        REPLIC_ESTBAR.Params[3].Value := SQLTEMP.FieldByName('CODPRO').Value;
-        REPLIC_ESTBAR.Params[4].Value := SQLTEMP.FieldByName('SEQBAR').Value;
-        REPLIC_ESTBAR.Params[5].Value := SQLTEMP.FieldByName('CODBAR').Value;
-        REPLIC_ESTBAR.Params[6].Value := SQLTEMP.FieldByName('NROBAR').Value;
-        REPLIC_ESTBAR.Params[7].Value := SQLTEMP.FieldByName('FLGINT').Value;
-        REPLIC_ESTBAR.Params[8].Value := SQLTEMP.FieldByName('QTDEMB').Value;
-        REPLIC_ESTBAR.Params[9].Value := SQLTEMP.FieldByName('TIPEMB').Value;
-        REPLIC_ESTBAR.Params[10].Value := SQLTEMP.FieldByName('CODEMB').Value;
-        REPLIC_ESTBAR.Params[11].Value := SQLTEMP.FieldByName('CUBEMB').Value;
-        REPLIC_ESTBAR.Params[12].Value := SQLTEMP.FieldByName('PESEMB').Value;
-        REPLIC_ESTBAR.Params[13].Value := SQLTEMP.FieldByName('ALTEMB').Value;
-        REPLIC_ESTBAR.Params[14].Value := SQLTEMP.FieldByName('LAREMB').Value;
-        REPLIC_ESTBAR.Params[15].Value := SQLTEMP.FieldByName('COMEMB').Value;
-        REPLIC_ESTBAR.Params[16].Value := SQLTEMP.FieldByName('PESLIQ').Value;
-        REPLIC_ESTBAR.Params[17].Value := SQLTEMP.FieldByName('PESBRT').Value;
-        REPLIC_ESTBAR.ExecProc;
-        //DBEmerion1.Commit;
-        SQLTEMP.Next;
-
-      end;
-    end;
-  finally
-    FreeAndnil(SQLTEMP);
-  end;
-end;
-
-procedure TfmManGDB.ReplicaEstEmb(CodEmb: string);
-var
-  SQLTEMP: TQuery;
-begin
-  SQLTEMP := TQuery.Create(nil);
-  try
-
-    SQLTEMP.Active := False;
-    SQLTEMP.DataBaseName := 'Isade';
-    SQLTEMP.SQL.Text := ' Select CodEmb, NomEmb '
-      + ' From ESTEMB'
-      + ' Where CodEmb = ' + QuotedStr(CodEmb);
-    SQLTEMP.Active := True;
-
-    SQLTEMP.first;
-
-    if ((session.IsAlias('Emerion_01') = true) and (SQLTEMP.SQL.Count > 0)) then
-    begin
-
-      REPLIC_ESTEMB.Params[0].Value := SQLTEMP.FieldByName('CODEMB').Value;
-      REPLIC_ESTEMB.Params[1].Value := SQLTEMP.FieldByName('NOMEMB').Value;
-
-      REPLIC_ESTEMB.ExecProc;
-
-    end;
-  finally
-    FreeAndnil(SQLTEMP);
-  end;
 
 end;
 
@@ -1961,18 +1002,18 @@ begin
   with TwwQuery(tQuery) do
   begin
 
-    fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+    fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
 
     try
       begin
-        ApplyUpdates; {Tenta aplicar as alterações}
-        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+        ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
+        fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
 
         result := True;
       end;
     except
       begin
-        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+        fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
 
         if TwwQuery(tQuery).State <> dsBrowse then
           TwwQuery(tQuery).CancelUpdates;
@@ -1995,18 +1036,18 @@ begin
   with TwwQuery(tQuery) do
   begin
 
-    fmManGDB.dbMain.StartTransaction; {Inicia a Transação}
+    fmManGDB.dbMain.StartTransaction; {Inicia a Transaï¿½ï¿½o}
 
     try
       begin
-        ApplyUpdates; {Tenta aplicar as alterações}
-        fmManGDB.dbMain.Commit; {confirma todas as alterações fechando a transação}
+        ApplyUpdates; {Tenta aplicar as alteraï¿½ï¿½es}
+        fmManGDB.dbMain.Commit; {confirma todas as alteraï¿½ï¿½es fechando a transaï¿½ï¿½o}
 
         result := True;
       end;
     except
       begin
-        fmManGDB.dbMain.Rollback; {desfaz as alterações se acontecer um erro}
+        fmManGDB.dbMain.Rollback; {desfaz as alteraï¿½ï¿½es se acontecer um erro}
 
         if TwwQuery(tQuery).State <> dsBrowse then
           TwwQuery(tQuery).CancelUpdates;
@@ -2037,13 +1078,7 @@ begin
   if dbMain.Connected then
     dbMain.Close;
 
-  if ((DebugHook > 0) and (ParamStr(1) <> 'remoto')) then //remoto
-    dbMain.Params.Values['PASSWORD'] := 'FgB@8165'
-  else
-    dbMain.Params.Values['PASSWORD'] := 'ibsade20';
-
-  if (ParamStr(1) = 'senhaNova') then
-    dbMain.Params.Values['PASSWORD'] := 'FgB@8165';
+  dbMain.Params.Values['PASSWORD'] := MasterGuIdHal;
 
   if Trim(sConectar) = '' then
   begin
@@ -2119,6 +1154,7 @@ begin
 
         dbMain.Params.Clear;
 
+        dbMain.Params.Add('SQLDIALECT=3');
         dbMain.Params.Add('BLOBS TO CACHE=-1');
 
         if Trim(GDirAce) <> '' then
@@ -2142,10 +1178,4 @@ begin
   end
 end;
 
-function TfmManGDB.getServerName: string;
-begin
-
-end;
-
 end.
-
