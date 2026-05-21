@@ -20,7 +20,7 @@ PrintToFile=0
 PrintBorders=1
 PrintSelected=0
 PrintVisible=0
-ExpandedItems=fmManGDB\<DefaultSession>\dbMain\SQLST2,fmManGDB\<DefaultSession>\dbMain\SQLIPI,fmManGDB\<DefaultSession>\<ImpliedDatabase>.\REPLIC_UNIDADE
+ExpandedItems=fmManGDB\<DefaultSession>\dbMain\SQLST2,fmManGDB\<DefaultSession>\dbMain\SQLIPI,fmManGDB\<DefaultSession>\<ImpliedDatabase>.\REPLIC_UNIDADE\REPLIC_UNIDADE.Params
 
 [DataDiagrams]
 Version=1
